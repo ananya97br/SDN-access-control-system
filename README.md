@@ -71,20 +71,25 @@ This will automatically install Mininet and all its dependencies.
 **1. Clone POX**
 ```bash
 git clone https://github.com/noxrepo/pox.git
+```
+
+**2. Clone this repository (if not already done)**
+```bash
+git clone https://github.com/ananya97br/SDN-access-control-system.git
+```
+
+**3. Copy the controller file to POX**
+```bash
+cp SDN-access-control-system/access_control.py pox/ext/
+```
+
+**4. Start the POX controller**
+```bash
 cd pox
-```
-
-**2. Place the controller file**
-```bash
-cp access_control.py pox/forwarding/
-```
-
-**3. Start the POX controller**
-```bash
 python3 pox.py log.level --DEBUG access_control
 ```
 
-**4. In a new terminal, start the Mininet topology**
+**5. In a new terminal, start the Mininet topology**
 ```bash
 sudo mn --controller=remote --topo single,3
 ```
