@@ -126,17 +126,16 @@ POX controller running, switch connected, Mininet topology created with 3 hosts 
 
 ---
 
-### Scenario 2 — pingall (Access Control Verification)
-`pingall` confirms h1 ↔ h2 are reachable, h3 is fully blocked. Controller logs show ALLOWED for 10.0.0.1/10.0.0.2 and BLOCKED for 10.0.0.3.
-
-![pingall](screenshots/2.png)
-
----
-
-### Scenario 3 — Network Topology (`net`)
+### Scenario 2 — Network Topology (`net`)
 Confirms topology: h1, h2, h3 each connected to s1 via dedicated interfaces.
 
 ![net](screenshots/3.png)
+
+---
+### Scenario 3 — pingall (Access Control Verification)
+`pingall` confirms h1 ↔ h2 are reachable, h3 is fully blocked. Controller logs show ALLOWED for 10.0.0.1/10.0.0.2 and BLOCKED for 10.0.0.3.
+
+![pingall](screenshots/2.png)
 
 ---
 
@@ -175,15 +174,15 @@ ICMP traffic captured on interface `s1-eth1`. Shows Echo requests from 10.0.0.1 
 
 ---
 
-## Regression Test — Policy Consistency
+## Regression Test
 
-| Test | Source | Destination | Expected | Result |
-|------|--------|-------------|----------|--------|
-| 1 | h1 (10.0.0.1) | h2 (10.0.0.2) | ALLOWED |  Pass |
-| 2 | h2 (10.0.0.2) | h1 (10.0.0.1) | ALLOWED |  Pass |
-| 3 | h3 (10.0.0.3) | h2 (10.0.0.2) | BLOCKED |  Pass |
-| 4 | h3 (10.0.0.3) | h1 (10.0.0.1) | BLOCKED |  Pass |
-| 5 | pingall | all hosts | h1↔h2 only |  Pass |
+| Test |        Source        |      Destination     |    Expected    |   Result   |
+|------|----------------------|----------------------|----------------|------------|
+|  1   | h1 (10.0.0.1)        | h2 (10.0.0.2)        | ALLOWED        |    Pass    |
+|  2   | h2 (10.0.0.2)        | h1 (10.0.0.1)        | ALLOWED        |    Pass    |
+|  3   | h3 (10.0.0.3)        | h2 (10.0.0.2)        | BLOCKED        |    Pass    |
+|  4   | h3 (10.0.0.3)        | h1 (10.0.0.1)        | BLOCKED        |    Pass    |
+|  5   | pingall              | all hosts            | h1↔h2 only     |    Pass    |
 
 Consistent across all test runs — whitelisted hosts always allowed, unauthorized hosts always blocked.
 
